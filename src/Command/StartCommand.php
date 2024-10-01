@@ -59,7 +59,7 @@ class StartCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $config = $this->path(is_string($input->getOption('config')) ? $input->getOption('config') : null);
+        $config = is_string($input->getOption('config')) ? $input->getOption('config') : $this->path($input->getOption('config'));
         $fileContent = (string) file_get_contents($config);
         $paths = Yaml::parse($fileContent);
 
